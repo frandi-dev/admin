@@ -8,15 +8,18 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./index.css";
 import Layout from "./components/Layout";
 import Room from "./pages/Room";
+import Login from "./pages/Login";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
       <Routes>
-        <Route element={<Layout />}>
-          <Route index path="/" element={<Room />} />
-          <Route path="/users" element={<h1>Halo User</h1>} />
-          <Route path="/settings" element={<h1>Halo Settings</h1>} />
+        <Route path="/" element={<Login />} />
+
+        <Route path="/admin" element={<Layout />}>
+          <Route index path="rooms" element={<Room />} />
+          <Route path="users" element={<h1>Halo User</h1>} />
+          <Route path="settings" element={<h1>Halo Settings</h1>} />
         </Route>
       </Routes>
     </Router>

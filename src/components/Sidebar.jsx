@@ -14,7 +14,7 @@ const Sidebar = () => {
             data-bs-title="Room"
             to="/"
             className={`btn btn-outline-primary ${
-              location.pathname === "/" ? "active bg-primary" : ""
+              location.pathname === "/rooms" ? "active bg-primary" : ""
             }`}
           >
             <AiOutlineHome />
