@@ -9,6 +9,7 @@ import {
 import * as bootstrap from "bootstrap";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import message from "../libs/message";
 
 const Layout = () => {
   const navigate = useNavigate();
@@ -24,6 +25,12 @@ const Layout = () => {
   });
 
   useEffect(() => {
+    if (localStorage.getItem("role") !== "admin") {
+      message.error("Sorry, only admins are allowed access.");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+    }
+
     if (!localStorage.getItem("token")) {
       navigate("/");
     }

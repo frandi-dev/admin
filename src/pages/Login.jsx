@@ -19,13 +19,20 @@ const Login = () => {
         password,
       });
       localStorage.setItem("token", res.result.token);
-      message.success("Login " + res.message);
+      localStorage.setItem("role", res.result.role);
+      if (res.result.role !== "admin") {
+        message.error("Sorry, only admins are allowed access.");
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+      } else {
+        message.success("Login " + res.message);
+        navigate("/admin/rooms");
+      }
     } catch (error) {
       console.log(error.message);
       message.error(error.message);
     } finally {
       setLoading(false);
-      navigate("/admin/rooms");
     }
   };
 
