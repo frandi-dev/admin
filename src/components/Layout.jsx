@@ -8,8 +8,11 @@ import {
 } from "react-icons/ai";
 import * as bootstrap from "bootstrap";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Layout = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     // Aktifkan semua tooltip setelah render
     const tooltipTriggerList = document.querySelectorAll(
@@ -19,6 +22,12 @@ const Layout = () => {
       new bootstrap.Tooltip(el);
     });
   });
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div className="d-flex vh-100">
       <Sidebar />
@@ -67,6 +76,8 @@ const Layout = () => {
                 data-bs-title="Close"
                 onClick={(e) => {
                   e.preventDefault();
+                  localStorage.removeItem("token");
+                  navigate("/");
                   window.electronAPI.closeWindow();
                 }}
               >

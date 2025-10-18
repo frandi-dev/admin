@@ -1,21 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import api from "../libs/api";
+import message from "../libs/message";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   // handle submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Halo ${username}, pesanmu: ${password}`);
+    setLoading(true);
+    try {
+      const res = await api.send("/users/login", "POST", {
+        username,
+        password,
+      });
+      localStorage.setItem("token", res.result.token);
+      message.success("Login " + res.message);
+    } catch (error) {
+      console.log(error.message);
+      message.error(error.message);
+    } finally {
+      setLoading(false);
+      navigate("/admin/rooms");
+    }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/admin/rooms");
+    }
+  }, []);
 
   return (
     <div className="bg-light" style={{ height: "100vh" }}>
       <div className="bg-light d-flex justify-content-center align-items-center vh-100">
         <div className="card shadow p-4 " style={{ width: "24rem" }}>
-          <div class="text-center">
-            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+          <div className="text-center">
+            <h1 className="h4 text-gray-900 mb-4">Welcome !</h1>
           </div>
           <div className="card-body">
             <form onSubmit={handleSubmit}>
@@ -50,7 +75,7 @@ const Login = () => {
 
               <div className="form-group">
                 <button type="submit" className="form-control btn btn-primary">
-                  Login
+                  {loading ? "Loading..." : "Login"}
                 </button>
               </div>
             </form>
