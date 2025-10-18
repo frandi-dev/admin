@@ -1,0 +1,8 @@
+.drag {
+  -webkit-app-region: drag;
+}
+
+.btn-close {
+  /* -webkit-app-region: no-drag; */
+  cursor: pointer !important;
+}
