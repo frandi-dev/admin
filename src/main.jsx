@@ -7,13 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./index.css";
 import Layout from "./components/Layout";
+import Room from "./pages/Room";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
       <Routes>
         <Route element={<Layout />}>
-          <Route index path="/" element={<h1>Halo Home</h1>} />
+          <Route index path="/" element={<Room />} />
           <Route path="/about" element={<h1>Halo about</h1>} />
         </Route>
       </Routes>
