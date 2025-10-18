@@ -14,7 +14,7 @@ const ChardRoom = ({ name, status_room, waktu_berjalan, nama_pelanggan }) => {
             waktu: {waktu_berjalan}
           </h6>
 
-          <div class="d-grid gap-2">
+          <div className="d-grid gap-2">
             {status_room === "terisi" ? (
               <button className="btn btn-danger">Preview</button>
             ) : (

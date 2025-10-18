@@ -1,32 +1,51 @@
-import { Link } from "react-router-dom";
-import { AiOutlineHome, AiOutlineSetting } from "react-icons/ai";
+import { Link, useLocation } from "react-router-dom";
+import { AiOutlineHome, AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
 const Sidebar = () => {
+  const location = useLocation();
+
   return (
-    <div
-      className="bg-primary text-dark d-flex flex-column p-3"
-      style={{ width: "250px" }}
-    >
-      <h4 className=" text-white mb-4">Admin</h4>
+    <div className="bg-body-tertiary d-flex flex-column p-3 text-center border">
+      <h4 className=" text-dark mb-4">Admin</h4>
       <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item">
+        <li className="nav-item" style={{ marginBottom: "4px" }}>
           <Link
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            data-bs-title="Room"
             to="/"
-            className={`nav-link text-white ${
-              location.pathname === "/" ? "active bg-dark" : ""
+            className={`btn btn-outline-primary ${
+              location.pathname === "/" ? "active bg-primary" : ""
             }`}
           >
-            <AiOutlineHome className="" /> Home
+            <AiOutlineHome />
           </Link>
         </li>
 
-        <li>
+        <li className="nav-item" style={{ marginBottom: "4px" }}>
           <Link
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            data-bs-title="User"
+            to="/users"
+            className={`btn btn-outline-primary ${
+              location.pathname === "/users" ? "active bg-primary" : ""
+            }`}
+          >
+            <AiOutlineUser />
+          </Link>
+        </li>
+
+        <li className="nav-item" style={{ marginBottom: "4px" }}>
+          <Link
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            data-bs-title="Settings"
             to="/settings"
-            className={`nav-link text-white ${
+            className={`btn btn-outline-primary ${
               location.pathname === "/settings" ? "active bg-primary" : ""
             }`}
           >
-            <AiOutlineSetting /> Settings
+            <AiOutlineSetting />
           </Link>
         </li>
       </ul>

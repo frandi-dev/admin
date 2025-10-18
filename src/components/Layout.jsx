@@ -1,6 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { AiOutlinePlus, AiOutlinePoweroff } from "react-icons/ai";
+import {
+  AiOutlineMessage,
+  AiOutlinePlus,
+  AiOutlinePoweroff,
+  AiOutlineUser,
+} from "react-icons/ai";
 import * as bootstrap from "bootstrap";
 import { useEffect } from "react";
 
@@ -22,14 +27,35 @@ const Layout = () => {
         <nav className="navbar bg-body-tertiary border-bottom">
           <div className="container-fluid">
             <ul className="nav">
-              <li class="nav-item">
+              <li className="nav-item" style={{ paddingRight: "4px" }}>
                 <button
-                  className="btn btn-primary"
+                  className="btn btn btn-outline-primary text-center"
                   data-bs-toggle="tooltip"
                   data-bs-placement="bottom"
-                  data-bs-title="add new room"
+                  data-bs-title="Add new room"
                 >
                   <AiOutlinePlus style={{ marginBottom: "2px" }} />
+                </button>
+              </li>
+              <li className="nav-item" style={{ paddingRight: "4px" }}>
+                <button
+                  className="btn btn btn-outline-primary text-center"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  data-bs-title="Message"
+                >
+                  <AiOutlineMessage style={{ marginBottom: "2px" }} />
+                </button>
+              </li>
+
+              <li className="nav-item" style={{ paddingRight: "2px" }}>
+                <button
+                  className="btn btn btn-outline-primary text-center"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  data-bs-title="Profile"
+                >
+                  <AiOutlineUser style={{ marginBottom: "2px" }} />
                 </button>
               </li>
             </ul>
@@ -37,8 +63,8 @@ const Layout = () => {
               <button
                 className="btn btn-danger text-center"
                 data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                data-bs-title="close"
+                data-bs-placement="left"
+                data-bs-title="Close"
                 onClick={(e) => {
                   e.preventDefault();
                   window.electronAPI.closeWindow();

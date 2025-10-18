@@ -15,7 +15,8 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route element={<Layout />}>
           <Route index path="/" element={<Room />} />
-          <Route path="/about" element={<h1>Halo about</h1>} />
+          <Route path="/users" element={<h1>Halo User</h1>} />
+          <Route path="/settings" element={<h1>Halo Settings</h1>} />
         </Route>
       </Routes>
     </Router>
