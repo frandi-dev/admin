@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ChardRoom from "../components/ChardRoom";
 import api from "../libs/api";
+import AddNewRoom from "../components/AddNewRoom";
+import message from "../libs/message";
 
 const Room = () => {
   const [rooms, setRooms] = useState([]);
@@ -27,6 +29,7 @@ const Room = () => {
       setLoading(true);
       try {
         const res = await api.send("/rooms", "GET");
+
         setRooms(res.result);
       } catch (error) {
         console.log(error.message);
@@ -40,6 +43,7 @@ const Room = () => {
 
   return !loading ? (
     <div>
+      <AddNewRoom />
       <div className="row">
         {rooms.map((room) => {
           // jika belum terisi

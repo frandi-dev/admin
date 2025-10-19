@@ -11,7 +11,7 @@ const error = async (text) => {
 
 const success = async (text) => {
   return Swal.fire({
-    icon: "success",
+    icon: "Success",
     title: text,
     showConfirmButton: false,
     timer: 1500,

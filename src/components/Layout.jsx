@@ -7,7 +7,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import * as bootstrap from "bootstrap";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import message from "../libs/message";
 
@@ -21,6 +21,13 @@ const Layout = () => {
     );
     tooltipTriggerList.forEach((el) => {
       new bootstrap.Tooltip(el);
+    });
+
+    const modalTriggerList = document.querySelectorAll(
+      '[data-bs-toggle="modal"]'
+    );
+    modalTriggerList.forEach((el) => {
+      new bootstrap.Modal(el);
     });
   });
 
@@ -46,9 +53,8 @@ const Layout = () => {
               <li className="nav-item" style={{ paddingRight: "4px" }}>
                 <button
                   className="btn btn btn-outline-primary text-center"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="bottom"
-                  data-bs-title="Add new room"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add-room"
                 >
                   <AiOutlinePlus style={{ marginBottom: "2px" }} />
                 </button>
