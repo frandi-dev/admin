@@ -7,6 +7,20 @@ const Room = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // fetch order untuk status room
+  useEffect(() => {
+    const fetchPemesanan = async () => {
+      try {
+        const res = await api.send("/pemesanan", "GET");
+        setOrders(res.result);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    fetchPemesanan();
+  }, []);
+
   // fetch all rooms
   useEffect(() => {
     const fetchRooms = async () => {
@@ -27,9 +41,27 @@ const Room = () => {
   return !loading ? (
     <div>
       <div className="row">
-        {rooms.map((room) => (
-          <ChardRoom key={room.id} name={room.nama} status_room={room.status} />
-        ))}
+        {rooms.map((room) => {
+          // jika belum terisi
+          if (orders.length && room.status !== "terisi") {
+            return (
+              <ChardRoom
+                key={room.id}
+                name={room.nama}
+                status_room={room.status}
+              />
+            );
+          }
+          // jika sudah terisi
+          return orders.map((order) => (
+            <ChardRoom
+              key={room.id}
+              name={room.nama}
+              status_room={room.status}
+              nama_pelanggan={order.nama}
+            />
+          ));
+        })}
       </div>
     </div>
   ) : (
