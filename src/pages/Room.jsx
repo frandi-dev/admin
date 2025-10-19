@@ -3,11 +3,14 @@ import ChardRoom from "../components/ChardRoom";
 import api from "../libs/api";
 import AddNewRoom from "../components/AddNewRoom";
 import rondom from "../libs/rondomStr";
+import { useNavigate } from "react-router-dom";
 
 const Room = () => {
   const [rooms, setRooms] = useState([]);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [idOrder, setIdOrder] = useState(null);
+  const navigate = useNavigate();
 
   // fetch order untuk status room
   useEffect(() => {
@@ -40,6 +43,14 @@ const Room = () => {
     fetchRooms();
   }, []);
 
+  useEffect(() => {
+    if (idOrder !== null) {
+      navigate(`/admin/rooms/preview/${idOrder}`);
+    } else {
+      console.log("ooo");
+    }
+  });
+
   // 💡 gabungkan ruangan dengan order-nya
   const roomsWithOrders = rooms.map((room) => {
     const currentOrder = orders.find(
@@ -48,6 +59,7 @@ const Room = () => {
     return {
       ...room,
       nama_pelanggan: currentOrder ? currentOrder.nama : null,
+      id_pemesanan: currentOrder ? currentOrder.id : null,
     };
   });
 
@@ -61,6 +73,7 @@ const Room = () => {
             name={room.nama}
             status_room={room.status}
             nama_pelanggan={room.nama_pelanggan}
+            setIdPreview={() => setIdOrder(room.id_pemesanan)}
           />
         ))}
       </div>

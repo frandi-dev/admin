@@ -9,9 +9,6 @@ const Sidebar = () => {
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item" style={{ marginBottom: "4px" }}>
           <Link
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            data-bs-title="Room"
             to="/"
             className={`btn btn-outline-primary ${
               location.pathname === "/rooms" ? "active bg-primary" : ""
@@ -23,29 +20,12 @@ const Sidebar = () => {
 
         <li className="nav-item" style={{ marginBottom: "4px" }}>
           <Link
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            data-bs-title="User"
             to="/users"
             className={`btn btn-outline-primary ${
               location.pathname === "/users" ? "active bg-primary" : ""
             }`}
           >
             <AiOutlineUser />
-          </Link>
-        </li>
-
-        <li className="nav-item" style={{ marginBottom: "4px" }}>
-          <Link
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            data-bs-title="Settings"
-            to="/settings"
-            className={`btn btn-outline-primary ${
-              location.pathname === "/settings" ? "active bg-primary" : ""
-            }`}
-          >
-            <AiOutlineSetting />
           </Link>
         </li>
       </ul>
