@@ -23,7 +23,7 @@ const ChardRoom = ({
 
             <div className="d-grid gap-2">
               {status_room === "terisi" ? (
-                <button className="btn btn-danger" onClick={setIdPreview}>
+                <button className="btn btn-success" onClick={setIdPreview}>
                   Preview
                 </button>
               ) : (
