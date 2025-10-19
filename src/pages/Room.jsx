@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ChardRoom from "../components/ChardRoom";
 import api from "../libs/api";
 import AddNewRoom from "../components/AddNewRoom";
-import message from "../libs/message";
+import rondom from "../libs/rondomStr";
 
 const Room = () => {
   const [rooms, setRooms] = useState([]);
@@ -47,10 +47,10 @@ const Room = () => {
       <div className="row">
         {rooms.map((room) => {
           // jika belum terisi
-          if (orders.length && room.status !== "terisi") {
+          if (orders.length || room.status !== "terisi") {
             return (
               <ChardRoom
-                key={room.id}
+                key={rondom.generate(10)}
                 name={room.nama}
                 status_room={room.status}
               />
@@ -59,7 +59,7 @@ const Room = () => {
           // jika sudah terisi
           return orders.map((order) => (
             <ChardRoom
-              key={room.id}
+              key={rondom.generate(10)}
               name={room.nama}
               status_room={room.status}
               nama_pelanggan={order.nama}
