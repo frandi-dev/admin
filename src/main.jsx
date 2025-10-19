@@ -9,7 +9,8 @@ import "./index.css";
 import Layout from "./components/Layout";
 import Room from "./pages/Room";
 import Login from "./pages/Login";
-import OrderPriview from "./pages/OrderPriview";
+import OrderPreview from "./pages/OrderPreview";
+import OrderFnb from "./pages/OrderFnb";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -18,8 +19,9 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<Login />} />
 
         <Route path="/admin" element={<Layout />}>
-          <Route index path="rooms" element={<Room />} />
-          <Route path="/admin/rooms/preview/:id" element={<OrderPriview />} />
+          <Route path="rooms" element={<Room />} />
+          <Route path="rooms/preview/:id" element={<OrderPreview />} />
+          <Route path="order/fnb/:id" element={<OrderFnb />} />
           <Route path="users" element={<h1>Halo User</h1>} />
           <Route path="settings" element={<h1>Halo Settings</h1>} />
         </Route>

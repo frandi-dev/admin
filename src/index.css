@@ -2,6 +2,11 @@
   user-select: none;
 }
 
+body,
+html {
+  overflow: hidden;
+}
+
 .drag {
   -webkit-app-region: drag;
 }
@@ -9,4 +14,23 @@
 .btn-close {
   /* -webkit-app-region: no-drag; */
   cursor: pointer !important;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  position: fixed;
+}
+
+/* Mengatur warna track dan thumb */
+::-webkit-scrollbar-track {
+  background: #f1f1f183;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a09d9d;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #817e7e;
 }

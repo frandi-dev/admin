@@ -13,6 +13,7 @@ import message from "../libs/message";
 
 const Layout = () => {
   const navigate = useNavigate();
+  const [triger, setTriger] = useState(false);
 
   useEffect(() => {
     // Aktifkan semua tooltip setelah render
@@ -29,7 +30,7 @@ const Layout = () => {
     modalTriggerList.forEach((el) => {
       new bootstrap.Modal(el);
     });
-  });
+  }, [triger]);
 
   useEffect(() => {
     if (localStorage.getItem("role") !== "admin") {
