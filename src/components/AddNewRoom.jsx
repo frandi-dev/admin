@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import ModalBox from "./ModalBox";
+import { useState } from "react";
+import ModalForm from "./ModalForm";
 import api from "../libs/api";
 import message from "../libs/message";
 
@@ -28,7 +28,7 @@ const AddNewRoom = () => {
   return (
     <>
       {/* modal untuk tambah room */}
-      <ModalBox
+      <ModalForm
         target={"add-room"}
         title={"create new room"}
         onSubmit={handleSubmit}
@@ -77,7 +77,7 @@ const AddNewRoom = () => {
             className="form-control"
           />
         </div>
-      </ModalBox>
+      </ModalForm>
     </>
   );
 };
