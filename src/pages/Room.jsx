@@ -1,75 +1,39 @@
+import { useEffect, useState } from "react";
 import ChardRoom from "../components/ChardRoom";
+import api from "../libs/api";
 
 const Room = () => {
-  return (
+  const [rooms, setRooms] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // fetch all rooms
+  useEffect(() => {
+    const fetchRooms = async () => {
+      setLoading(true);
+      try {
+        const res = await api.send("/rooms", "GET");
+        setRooms(res.result);
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRooms();
+  }, []);
+
+  return !loading ? (
     <div>
       <div className="row">
-        <ChardRoom
-          name={"R101"}
-          status_room={"terisi"}
-          waktu_berjalan={"00:00:00"}
-          nama_pelanggan={"mr.G"}
-        />
-        <ChardRoom
-          name={"R102"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R103"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R205"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R206"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R207"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-      </div>
-
-      <div className="row">
-        <ChardRoom
-          name={"R208"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R209"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R210"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R311"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R312"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
-        <ChardRoom
-          name={"R316"}
-          status_room={"tersedia"}
-          waktu_berjalan={"00:00:00"}
-        />
+        {rooms.map((room) => (
+          <ChardRoom key={room.id} name={room.nama} status_room={room.status} />
+        ))}
       </div>
     </div>
+  ) : (
+    "Loading"
   );
 };
 

@@ -11,7 +11,7 @@ const ChardRoom = ({ name, status_room, waktu_berjalan, nama_pelanggan }) => {
             name: {nama_pelanggan ? nama_pelanggan : "..."}
           </h6>
           <h6 className="card-subtitle mb-2 text-body-secondary">
-            waktu: {waktu_berjalan}
+            waktu: {waktu_berjalan ? waktu_berjalan : "00:00:00"}
           </h6>
 
           <div className="d-grid gap-2">
