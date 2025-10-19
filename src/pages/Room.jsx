@@ -29,7 +29,6 @@ const Room = () => {
       setLoading(true);
       try {
         const res = await api.send("/rooms", "GET");
-
         setRooms(res.result);
       } catch (error) {
         console.log(error.message);
@@ -41,31 +40,29 @@ const Room = () => {
     fetchRooms();
   }, []);
 
+  // 💡 gabungkan ruangan dengan order-nya
+  const roomsWithOrders = rooms.map((room) => {
+    const currentOrder = orders.find(
+      (order) => order.id_ruangan === room.id && order.status === "aktif"
+    );
+    return {
+      ...room,
+      nama_pelanggan: currentOrder ? currentOrder.nama : null,
+    };
+  });
+
   return !loading ? (
     <div>
       <AddNewRoom />
       <div className="row">
-        {rooms.map((room) => {
-          // jika belum terisi
-          if (orders.length || room.status !== "terisi") {
-            return (
-              <ChardRoom
-                key={rondom.generate(10)}
-                name={room.nama}
-                status_room={room.status}
-              />
-            );
-          }
-          // jika sudah terisi
-          return orders.map((order) => (
-            <ChardRoom
-              key={rondom.generate(10)}
-              name={room.nama}
-              status_room={room.status}
-              nama_pelanggan={order.nama}
-            />
-          ));
-        })}
+        {roomsWithOrders.map((room) => (
+          <ChardRoom
+            key={rondom.generate(10)}
+            name={room.nama}
+            status_room={room.status}
+            nama_pelanggan={room.nama_pelanggan}
+          />
+        ))}
       </div>
     </div>
   ) : (

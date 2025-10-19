@@ -1,4 +1,4 @@
-const ModalBox = ({ target, title, loading, onSubmit, children }) => {
+const ModalForm = ({ target, title, loading, onSubmit, children }) => {
   return (
     <form onSubmit={onSubmit}>
       <div
@@ -43,4 +43,4 @@ const ModalBox = ({ target, title, loading, onSubmit, children }) => {
   );
 };
 
-export default ModalBox;
+export default ModalForm;
